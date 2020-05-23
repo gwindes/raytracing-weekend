@@ -4,6 +4,7 @@
 #include "float.h"
 #include "sphere.h"
 #include "hitablelist.h"
+#include "camera.h"
 
 // TODO: find the real MAXFLOAT var
 #define MAXFLOAT 9999999.9
@@ -23,28 +24,36 @@ vec3 color(const ray& r, hitable* world) {
 int main() {
     int nx = 500;
     int ny = 250;
+    int ns = 100;
 
     std::cout << "P3\n" << nx << " " << ny << "\n255\n";
 
-    vec3 lower_left_corner(-2.0, -1.0, -1.0);
-    vec3 horizontal(4.0, 0.0, 0.0);
-    vec3 vertical(0.0, 2.0, 0.0);
-    vec3 origin(0.0, 0.0, 0.0);
+    //vec3 lower_left_corner(-2.0, -1.0, -1.0);
+    //vec3 horizontal(4.0, 0.0, 0.0);
+    //vec3 vertical(0.0, 2.0, 0.0);
+    //vec3 origin(0.0, 0.0, 0.0);
 
     hitable* list[2];
     list[0] = new sphere(vec3(0,0,-1), 0.5);
     list[1] = new sphere(vec3(0,-100.5, -1), 100);
 
     hitable * world = new hitablelist(list, 2);
+    camera cam;
 
     // for(int j = 0; j < ny; j++) {
     for(int j = ny-1; j >= 0; j--) {
         for(int i=0; i < nx; i++) {
-            float u = float(i) / float(nx);
-            float v = float(j) / float(ny);
+            vec3 col(0, 0, 0);
+            for (int s=0; s < ns; s++) {
+                float u = float(i + drand48()) / float(nx);
+                float v = float(j + drand48()) / float(ny);
 
-            ray r(origin, lower_left_corner + u*horizontal + v*vertical);
-            vec3 col = color(r, world);
+                ray r = cam.get_ray(u, v);
+                vec3 p = r.point_at_parameter(2.0);
+                col += color(r, world);
+            }
+
+            col /= float(ns);
 
             int ir = int(255.99*col[0]);
             int ig = int(255.99*col[1]);
