@@ -1,11 +1,13 @@
 #ifndef RAYTRACER_WEEKEND_HITABLE_H
 #define RAYTRACER_WEEKEND_HITABLE_H
 
+class material;
 
 struct hit_record {
     float t;
     vec3 p;
     vec3 normal;
+    material *material_ptr;
 };
 
 class hitable {

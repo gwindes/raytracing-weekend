@@ -3,13 +3,24 @@
 
 #include "hitable.h"
 
+vec3 random_in_unit_sphere() {
+    vec3 p;
+    do {
+        p = 2.0 * vec3(drand48(), drand48(), drand48()) - vec3(1, 1, 1);
+    } while (p.squared_length() >= 1.0);
+
+    return p;
+}
+
 class sphere: public hitable {
 public:
     sphere() {}
     sphere(vec3 cen, float r) : center(cen), radius(r) {};
+    sphere(vec3 cen, float r, material * mat) : center(cen), radius(r), obj_material(mat) {};
     virtual bool hit(const ray& r, float tmin, float tmax, hit_record& rec) const;
     vec3 center;
     float radius;
+    material* obj_material;
 };
 
 bool sphere::hit(const ray& r, float t_min, float t_max, hit_record& rec) const {
@@ -25,6 +36,7 @@ bool sphere::hit(const ray& r, float t_min, float t_max, hit_record& rec) const 
             rec.t = temp;
             rec.p = r.point_at_parameter(rec.t);
             rec.normal = (rec.p - center) / radius;
+            rec.material_ptr = obj_material;
             return true;
         }
 
@@ -33,6 +45,7 @@ bool sphere::hit(const ray& r, float t_min, float t_max, hit_record& rec) const 
             rec.t = temp;
             rec.p = r.point_at_parameter(rec.t);
             rec.normal = (rec.p - center) / radius;
+            rec.material_ptr = obj_material;
             return true;
         }
     }
