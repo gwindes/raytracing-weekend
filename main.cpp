@@ -5,9 +5,11 @@
 #include "sphere.h"
 #include "hitablelist.h"
 #include "camera.h"
+
 #include "material.h"
 #include "lambertian.h"
 #include "metal.h"
+#include "dielectric.h"
 
 // TODO: find the real MAXFLOAT var
 #define MAXFLOAT 9999999.9
@@ -37,13 +39,14 @@ int main() {
 
     std::cout << "P3\n" << nx << " " << ny << "\n255\n";
 
-    int num_spheres = 4;
+    int num_spheres = 5;
 
     hitable* list[num_spheres];
     list[0] = new sphere(vec3(0,0,-1), 0.5, new lambertian(vec3(0.8, 0.3, 0.3)));
     list[1] = new sphere(vec3(0, -100.5, -1), 100, new lambertian(vec3(0.1, 0.1, 0.1)));
-    list[2] = new sphere(vec3(1,0, -1), 0.5, new metal(vec3(0.8, 0.6, 0.2), 1.0));
-    list[3] = new sphere(vec3(-1,0, -1), 0.5, new metal(vec3(0.8, 0.8, 0.8), 0.3));
+    list[2] = new sphere(vec3(1,0, -1), 0.5, new metal(vec3(0.8, 0.6, 0.2), 0.1));
+    list[3] = new sphere(vec3(-1,0, -1), 0.5, new dielectric(1.5));
+    list[4] = new sphere(vec3(-1,0, -1), -0.45, new dielectric(1.5));
 
     hitable * world = new hitablelist(list, num_spheres);
     camera cam;
