@@ -104,7 +104,7 @@ int main() {
     long num_pixels = nx * ny;
     std::string * pixel_values = new std::string[num_pixels+1];
 
-    int idx = 0;
+    long idx = 0;
     int max_y = ny-1;
 
     #pragma omp parallel for
@@ -134,7 +134,7 @@ int main() {
         }
     }
 
-    for (int i=0; i < num_pixels; i++) {
+    for (long i=0; i < num_pixels; i++) {
         std::cout << pixel_values[i] << "\n";
     }
 
