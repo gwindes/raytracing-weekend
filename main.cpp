@@ -33,27 +33,28 @@ vec3 color(const ray& r, hitable* world, int depth) {
 }
 
 hitable * random_scene() {
-    int n = 500;
+    int max = 15;
+    int n = (max*2)*(max*2) + 1;
     hitable **list = new hitable*[n+1];
 
     list[0] = new sphere(vec3(0, -1000, -1), 1000, new lambertian(vec3(0.1, 0.1, 0.1)));
 
     int i = 1;
-    int max = 11;
+
     for (int x = -max; x < max; x++) {
         for (int z = -max; z < max; z++) {
             float choose_mat = drand48();
             vec3 center(x+0.9*drand48(), 0.2, z+0.9*drand48());
             if ((center - vec3(4, 0.2, 0)).length() > 0.9) {
+                material * obj_material;
                 if (choose_mat < 0.8) {
-                    list[i++] = new sphere(center, 0.2,
-                                           new lambertian(vec3(drand48()*drand48(), drand48()*drand48(), drand48()*drand48())));
+                    obj_material = new lambertian(vec3(drand48()*drand48(), drand48()*drand48(), drand48()*drand48()));
                 } else if (choose_mat < 0.95) {
-                    list[i++] = new sphere(center, 0.2,
-                                           new metal(vec3(0.5*(1+drand48()), 0.5*(1+drand48()), 0.5*(1+drand48())), 0.5*drand48()));
+                    obj_material = new metal(vec3(0.5*(1+drand48()), 0.5*(1+drand48()), 0.5*(1+drand48())), 0.5*drand48());
                 } else {
-                    list[i++] = new sphere(center, 0.2, new dielectric(1.5));
+                    obj_material = new dielectric(1.5);
                 }
+                list[i++] = new sphere(center, 0.2, obj_material);
             }
         }
     }
