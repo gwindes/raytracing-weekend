@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include "vec3.h"
 #include "ray.h"
 #include "float.h"
@@ -100,8 +101,14 @@ int main() {
             dist_to_focus
     );
 
-    // for(int j = 0; j < ny; j++) {
-    for(int j = ny-1; j >= 0; j--) {
+    long num_pixels = nx * ny;
+    std::string * pixel_values = new std::string[num_pixels+1];
+
+    int idx = 0;
+    int max_y = ny-1;
+
+    #pragma omp parallel for
+    for(int j = max_y; j >= 0; j--) {
         for(int i=0; i < nx; i++) {
             vec3 col(0.0, 0.0, 0.0);
             for (int s=0; s < ns; s++) {
@@ -109,7 +116,7 @@ int main() {
                 float v = float(j + drand48()) / float(ny);
 
                 ray r = cam.get_ray(u, v);
-                vec3 p = r.point_at_parameter(2.0);
+                //vec3 p = r.point_at_parameter(2.0);
                 col += color(r, world, 0);
             }
 
@@ -121,8 +128,14 @@ int main() {
             int ig = int(255.99*col[1]);
             int ib = int(255.99*col[2]);
 
-            std::cout << ir << " " << ig << " " << ib << "\n";
+            idx = abs(j - (max_y)) * nx + i;
+            std::string tmp = std::to_string(ir) + " " + std::to_string(ig) + " " + std::to_string(ib);
+            pixel_values[idx] = tmp;
         }
+    }
+
+    for (int i=0; i < num_pixels; i++) {
+        std::cout << pixel_values[i] << "\n";
     }
 
     return 0;
