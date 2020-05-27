@@ -103,12 +103,11 @@ int main() {
 
     long num_pixels = nx * ny;
     std::string * pixel_values = new std::string[num_pixels+1];
-
-    long idx = 0;
     int max_y = ny-1;
 
     #pragma omp parallel for
     for(int j = max_y; j >= 0; j--) {
+        long idx = 0;
         for(int i=0; i < nx; i++) {
             vec3 col(0.0, 0.0, 0.0);
             for (int s=0; s < ns; s++) {
