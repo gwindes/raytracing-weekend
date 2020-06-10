@@ -16,7 +16,7 @@ Modified to include OpenMP parallel computing.
 
 ## Parallel Benchmarks
 
-Complex Scene 1K+ spheres:
+Complex Scene 1K+ spheres (100 samples):
 
 |CPU|Cores|Resolution|Time (HH:MM:SS)|Performance Gain|
 |:---:|:---:|:----:|:--------------:|:---:|
