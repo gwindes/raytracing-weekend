@@ -3,7 +3,7 @@ project(raytracer_weekend)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(raytracer_weekend main.cpp)
+add_executable(raytracer_weekend main.cpp camera.cpp dielectric.cpp)
 
 find_package(OpenMP)
 if(OpenMP_CXX_FOUND)

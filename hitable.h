@@ -1,6 +1,7 @@
 #ifndef RAYTRACER_WEEKEND_HITABLE_H
 #define RAYTRACER_WEEKEND_HITABLE_H
 
+#include "ray.h"
 class material;
 
 struct hit_record {
