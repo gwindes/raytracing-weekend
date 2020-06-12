@@ -18,10 +18,10 @@ Modified to include OpenMP parallel computing.
 
 Complex Scene 1K+ spheres (100 samples):
 
-|CPU|Cores|Resolution|Time (HH:MM:SS)|Performance Gain|
+|CPU|Cores|Resolution|Time (HH:MM:SS)|Speedup|
 |:---:|:---:|:----:|:--------------:|:---:|
 |Core i7| 1 | 1080p | TBD | - |
 |Core i7| 8 | 1080p | 87 min 34 secs | - |
 |Raspberry Pi 3| 1 | 1080p | 51 hrs 2 min 12 secs | - |
-|Raspberry Pi 3| 4 | 1080p | TBD | - |
+|Raspberry Pi 3| 4 | 1080p | 24 hrs 1 min 14 secs | 2.12x |
 
