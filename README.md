@@ -8,8 +8,8 @@ Modified to include OpenMP parallel computing.
 |Roadmap Item|Status|
 |:----------:|:----:|
 | Add support for OpenMP | Completed |
-| Refactor raytracer weekend implementations out of header files | In Progress |
-| Add support for MPI | To Do |
+| Refactor raytracer weekend implementations out of header files | Complete |
+| Add support for MPI | In Progress |
 | Add Cuda Support | To Do |
 
 
@@ -18,10 +18,10 @@ Modified to include OpenMP parallel computing.
 
 Complex Scene 1K+ spheres (100 samples):
 
-|CPU|Cores|Resolution|Time (HH:MM:SS)|Speedup|
-|:---:|:---:|:----:|:--------------:|:---:|
-|Core i7| 1 | 1080p | TBD | - |
-|Core i7| 8 | 1080p | 87 min 34 secs | - |
-|Raspberry Pi 3| 1 | 1080p | 51 hrs 2 min 12 secs | - |
-|Raspberry Pi 3| 4 | 1080p | 24 hrs 1 min 14 secs | 2.12x |
+|CPU|Cores|Resolution|Time (HH:MM:SS)|Speedup|Parallel Efficency|
+|:---:|:---:|:----:|:--------------:|:------:|:----------------:|
+|Core i7| 1 | 1080p | 51 hrs 7 min 41 secs | - | - |
+|Core i7| 8 | 1080p | 14 hrs 25 min 34 secs | 3.54x | 0.44 |
+|Raspberry Pi 3| 1 | 1080p | 51 hrs 2 min 12 secs | - | - |
+|Raspberry Pi 3| 4 | 1080p | 24 hrs 1 min 14 secs | 2.12x | 0.53 |
 
