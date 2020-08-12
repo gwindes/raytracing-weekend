@@ -68,9 +68,9 @@ hitable * random_scene() {
 }
 
 int main() {
-    int nx = 500;
-    int ny = 250;
-    int ns = 100;
+    int nx = 1920;
+    int ny = 1080;
+    int ns = 4;
 
     std::cout << "P3\n" << nx << " " << ny << "\n255\n";
 
@@ -128,6 +128,7 @@ int main() {
             int ib = int(255.99*col[2]);
 
             idx = abs(j - (max_y)) * nx + i;
+
             std::string tmp = std::to_string(ir) + " " + std::to_string(ig) + " " + std::to_string(ib);
             pixel_values[idx] = tmp;
         }

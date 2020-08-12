@@ -4,6 +4,23 @@ Inspired by: https://raytracing.github.io/
 
 Modified to include OpenMP parallel computing.
 
+## Local Development / Running Locally
+* Need CMake 3.16 or great
+
+1. make `build` directory within project root
+2. cd to `build` directory
+3. run `cmake ..` to build cmake dependencies
+4. run `make` in `raytracing-weekend/build`
+5. To run program `./build/raytracer_weekend >> output.ppm`
+
+Note: Modify the resolution and number of samples in `main.cpp` within `main()`:
+```
+    int nx = 1920; // image width
+    int ny = 1080; // image height
+    int ns = 4; //number of samples per pixel
+```
+
+
 ## Roadmap
 |Roadmap Item|Status|
 |:----------:|:----:|
