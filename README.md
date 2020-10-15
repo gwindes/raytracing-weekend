@@ -32,13 +32,12 @@ Note: Modify the resolution and number of samples in `main.cpp` within `main()`:
 
 
 ## Parallel Benchmarks
-
 Complex Scene 1K+ spheres (100 samples):
 
 |CPU|Cores|Resolution|Time (HH:MM:SS)|Speedup|Parallel Efficency|
 |:---:|:---:|:----:|:--------------:|:------:|:----------------:|
-|Core i7| 1 | 1080p | 51 hrs 7 min 41 secs | - | - |
-|Core i7| 8 | 1080p | 14 hrs 25 min 34 secs | 3.54x | 0.44 |
+|Core i7 3770K ~3.5GHz| 1 | 1080p | 51 hrs 7 min 41 secs | - | - |
+|Core i7 3770K ~3.5GHz| 8 | 1080p | 14 hrs 25 min 34 secs | 3.54x | 0.44 |
 |Raspberry Pi 3| 1 | 1080p | 51 hrs 2 min 12 secs | - | - |
 |Raspberry Pi 3| 4 | 1080p | 24 hrs 1 min 14 secs | 2.12x | 0.53 |
 
