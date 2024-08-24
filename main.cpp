@@ -138,5 +138,11 @@ int main() {
         std::cout << pixel_values[i] << "\n";
     }
 
+    delete[] pixel_values;
+    for(int i=0; i < world->list_size; i++) {
+        delete world->list[i];
+    }
+    delete world;
+
     return 0;
 }
